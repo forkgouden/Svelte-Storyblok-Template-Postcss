@@ -3,46 +3,44 @@
   import Li from "./Li.svelte";
   export let config;
   export let segment;
-
-  let length = config.Links.length;
 </script>
 
 <style>
   aside {
-    height: max-content;
-    position: sticky;
     display: flex;
-    flex-direction: row;
-    top: 0;
-    align-items: center;
-    width: 100%;
+    flex-direction: column;
     justify-content: center;
-    background-color: transparent;
+    align-items: center;
+    height: max-content;
+    width: 100%;
+    position: sticky;
+    top: 0;
 
     @media (min-width: 992px) {
-      justify-content: space-between;
-      background-color: var(--white);
+      width: 25%;
+    }
+
+    @media (min-width: 1200px) {
+      top: 2rem;
     }
   }
 
   nav {
     display: none;
     font-weight: 400;
+    width: 100%;
+    padding-left: 4px;
 
     @media (min-width: 992px) {
       display: flex;
       align-items: center;
       width: min-content;
-      flex-direction: row-reverse;
-      min-width: 25%;
+      flex-direction: column;
+    }
 
-      &.todo {
-        width: 50%;
-      }
-
-      &.casi {
-        width: 40%;
-      }
+    @media (min-width: 1200px) {
+      width: 200px;
+      padding-left: 4px;
     }
   }
 
@@ -54,20 +52,15 @@
     font-weight: 400;
 
     @media (min-width: 992px) {
-      flex-direction: row;
+      flex-direction: column;
       align-items: flex-start;
     }
-  }
-  p {
-    font-size: 120%;
   }
 </style>
 
 <aside>
-  <Brand>
-    <p>Felix Porteiro</p>
-  </Brand>
-  <nav class={length >= 4 ? "todo" : "casi"}>
+  <Brand />
+  <nav>
     <ul>
       {#each config.Links as link}
         <Li {segment} link={link.link} text={link.text} />
